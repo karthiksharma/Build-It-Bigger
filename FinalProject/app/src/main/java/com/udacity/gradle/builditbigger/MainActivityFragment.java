@@ -1,14 +1,15 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.karthik.self.jokeandroidlibrary.JokeActivity;
 import com.karthik.udacity.JokeSmith;
 
 
@@ -36,7 +37,11 @@ public class MainActivityFragment extends Fragment {
         root.findViewById(R.id.joke_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), new JokeSmith().getJoke(), Toast.LENGTH_SHORT).show();
+                String joke = new JokeSmith().getJoke();
+                Intent intent = new Intent(getActivity(), JokeActivity.class);
+                intent.putExtra("joke", joke);
+                startActivity(intent);
+//                Toast.makeText(getActivity(), new JokeSmith().getJoke(), Toast.LENGTH_SHORT).show();
             }
         });
         return root;
